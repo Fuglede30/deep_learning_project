@@ -17,6 +17,7 @@ data_iterations = 100
 label_iterations = 150
 torch.manual_seed(42)
 
+#Function made by Rasmus Hannibal Tirsgaard
 def transfer_unlabelled_to_labeled(unused_dataset, train_dataset, indexes):
     # Convert indexes to boolean mask
     indexes = torch.tensor([i in indexes for i in range(len(unused_dataset.targets))])
@@ -51,6 +52,7 @@ def transfer_unused_to_labeled(unused_dataset, train_dataset, indexes):
 
     return train_dataset, unused_dataset
 
+#Function made by Rasmus Hannibal Tirsgaard
 def validate_model(model, val_loader, device):
 
     model.eval()
@@ -64,6 +66,7 @@ def validate_model(model, val_loader, device):
             correct += (predicted == labels).sum().item()
     return 100 * correct / total
 
+#Function made by Rasmus Hannibal Tirsgaard
 def train_model(model, train_loader, val_loader, criterion, optimizer, device, num_epochs=10, val_interval=1):
     accuracies = []
     for epoch in tqdm(range(num_epochs)):
@@ -89,6 +92,7 @@ def train_model(model, train_loader, val_loader, criterion, optimizer, device, n
 
 frac = 0.01
 
+#Function made by Rasmus Hannibal Tirsgaard
 def label_iteration_uncertanty_sampling(model, train_dataset, unlabelled_dataset, device, top_frac=frac):
     # Use model to label all images in validation set
     model.eval()
